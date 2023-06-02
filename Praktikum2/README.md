@@ -185,3 +185,67 @@ Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk
 mengetahui pengaruh suhu operasi (100˚C, 125˚C dan 150˚C) dan tiga jenis kaca
 pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan
 dilakukan sebanyak 27 kali dan didapat data sebagai berikut:
+
+
+a. Buatlah plot sederhana untuk visualisasi data.
+
+Jawab:
+
+```R
+data <- read.csv("GTL.csv")
+
+qplot(x = Temp, y = Light, geom = "point", data = data) + facet_grid(.~Glass, labeller = label_both)
+```
+
+Result:
+
+b. Lakukan uji ANOVA dua arah.
+
+Jawab:
+
+```R
+data$Glass <- as.factor(data$Glass)
+data$Temp <- as.factor(data$Temp)
+
+anova <- aov(Light~Glass*Temp, data=data)
+summary(anova)
+```
+
+Result:
+
+```R
+            Df  Sum Sq Mean Sq F value   Pr(>F)    
+Glass        2  150865   75432   206.4 3.89e-13 ***
+Temp         2 1970335  985167  2695.3  < 2e-16 ***
+Glass:Temp   4  290552   72638   198.7 1.25e-14 ***
+Residuals   18    6579     366                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+c. Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap
+perlakuan (kombinasi kaca pelat muka dan suhu operasi).
+
+Jawab:
+
+```R
+library(dplyr)
+summary <- group_by(data, Glass, Temp) %>% summarise(mean = mean(Light), sd = sd(Light)) %>% arrange(desc(mean))
+summary
+```
+
+Result:
+
+```R
+  Glass Temp   mean    sd
+  <fct> <fct> <dbl> <dbl>
+1 A     150   1386   6   
+2 B     150   1313  14.5 
+3 A     125   1087.  2.52
+4 C     125   1055. 10.6 
+5 B     125   1035  35   
+6 C     150    887. 18.6 
+7 C     100    573. 26.5 
+8 A     100    573.  6.43
+9 B     100    553  24.6 
+```
