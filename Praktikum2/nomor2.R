@@ -1,3 +1,3 @@
 library(BSDA)
-tsum.test(mean.x = 23500, s.x = 3000, n.x = 100)
+tsum.test(mean.x = 23500, s.x = 3000, n.x = 100, mu = 25000)
 

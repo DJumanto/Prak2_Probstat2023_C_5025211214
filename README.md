@@ -45,18 +45,8 @@ tRes
 ```
 Result:
 
-```R
-Paired t-test
+![image](https://github.com/DJumanto/Prak2_Probstat2023_C_5025211214/assets/100863813/a4090263-a18f-4f3c-bba1-7e0809116154)
 
-data:  y and x
-t = 6.8039, df = 8, p-value = 0.0001373
-alternative hypothesis: true mean difference is not equal to 0
-95 percent confidence interval:
- 11.75246 23.80310
-sample estimates:
-mean difference 
-       17.77778
-```
 
 c. Tentukanlah apakah terdapat pengaruh yang signifikan secara statistika dalam
 hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴 jika
@@ -75,29 +65,19 @@ menunjukkan rata-rata 23.500 kilometer dan standar deviasi 3.000 kilometer
 
 a. Apakah Anda setuju dengan klaim tersebut? Jelaskan.
 
-Saya setuju, dengan rata-rata 23500 dari sample acak dengan sd 3000 km maka sangat mungkin bahwa klaim tersebut valid. Grafik persebaran data dari distribusi normal akan lebih pekat di daerah kurang dari 25000 km dengan asumsi nilai tengah grafik adalah nilai rata-rata dari sampel acak yang didapat.'
+Tidak, karena kalim nilai 25.000 terlalu jauh dengan standard data rata-rata 23.500 dan standard deviasi 3000.
 
 
 b. Buatlah kesimpulan berdasarkan p-value yang dihasilkan!
 
 ```R
 library(BSDA)
-tsum.test(mean.x = 23500, s.x = 3000, n.x = 100)
+tsum.test(mean.x = 23500, s.x = 3000, n.x = 100, mu = 25000)
 ```
 
 Result:
-```R
-One-sample t-Test
+![image](https://github.com/DJumanto/Prak2_Probstat2023_C_5025211214/assets/100863813/117a7723-345e-47c9-9cda-454519c303ab)
 
-data:  Summarized x
-t = 78.333, df = 99, p-value < 2.2e-16
-alternative hypothesis: true mean is not equal to 0
-95 percent confidence interval:
- 22904.73 24095.27
-sample estimates:
-mean of x 
-    23500
-```
 
 Jarak tempuh mobil per-tahun berada pada interval 22904.73 km dan 24095.27 km dengan interval kepercayaan sebesar 95%
 
@@ -136,18 +116,8 @@ tsum.test(mean.x=3.64, s.x = 1.67, n.x = 20, mean.y =2.79 , s.y = 1.5 , n.y=27, 
 ```
 
 Result:
-```R
+![image](https://github.com/DJumanto/Prak2_Probstat2023_C_5025211214/assets/100863813/de4e72e7-1ce8-45ba-8aa1-0f9788edd61d)
 
-	Standard Two-Sample t-Test
-data:  Summarized x and y
-t = 1.8304, df = 45, p-value = 0.07381
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.08528454  1.78528454
-sample estimates:
-mean of x mean of y 
-     3.64      2.79 
-```
 
 C. Lakukan uji statistik (df =2)
 
@@ -157,6 +127,9 @@ Jawab:
 library(mosaic)
 plotDist(dist = 't', df = 2, col ='red')
 ```
+
+Result:
+![image](https://github.com/DJumanto/Prak2_Probstat2023_C_5025211214/assets/100863813/ad444943-5135-4376-b8d5-c8fcb8f50962)
 
 
 D. Nilai kritikal
@@ -199,6 +172,9 @@ qplot(x = Temp, y = Light, geom = "point", data = data) + facet_grid(.~Glass, la
 
 Result:
 
+![image](https://github.com/DJumanto/Prak2_Probstat2023_C_5025211214/assets/100863813/c5e2dda3-01f2-4dbb-88bb-50fb5156bd56)
+
+
 b. Lakukan uji ANOVA dua arah.
 
 Jawab:
@@ -212,16 +188,8 @@ summary(anova)
 ```
 
 Result:
+![image](https://github.com/DJumanto/Prak2_Probstat2023_C_5025211214/assets/100863813/c5e2dda3-01f2-4dbb-88bb-50fb5156bd56)
 
-```R
-            Df  Sum Sq Mean Sq F value   Pr(>F)    
-Glass        2  150865   75432   206.4 3.89e-13 ***
-Temp         2 1970335  985167  2695.3  < 2e-16 ***
-Glass:Temp   4  290552   72638   198.7 1.25e-14 ***
-Residuals   18    6579     366                     
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-```
 
 c. Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap
 perlakuan (kombinasi kaca pelat muka dan suhu operasi).
@@ -236,16 +204,4 @@ summary
 
 Result:
 
-```R
-  Glass Temp   mean    sd
-  <fct> <fct> <dbl> <dbl>
-1 A     150   1386   6   
-2 B     150   1313  14.5 
-3 A     125   1087.  2.52
-4 C     125   1055. 10.6 
-5 B     125   1035  35   
-6 C     150    887. 18.6 
-7 C     100    573. 26.5 
-8 A     100    573.  6.43
-9 B     100    553  24.6 
-```
+![image](https://github.com/DJumanto/Prak2_Probstat2023_C_5025211214/assets/100863813/00416911-5dac-4eeb-a33b-6e5d58313c19)
